@@ -7,6 +7,10 @@ public class CustomFunctionLamda {
 		//call testLamdaExpr.
 		//Calling static method from static void
 		testLamdaExpr();
+		
+		testLamdaExpr("Uddipan");
+		
+		
 		System.out.println("End   of the application");
 	}
 	
@@ -43,6 +47,21 @@ public class CustomFunctionLamda {
 		
 	}
 	
+	static void testLamdaExpr (String name) {
+		
+		CustomFuntionalInterfaceTwo cusLambda = () -> System.out.println("Void type method in Functional Interface");
+		cusLambda.testVoid();
+		
+		CustomFuntionalInterfaceTwo cusLambda2 = () -> {
+			System.out.println("Void type method in Functional Interface and object create with Lambda body type");
+		};
+		cusLambda2.testVoid();
+		
+		cusLambda2.testDefault(name);
+		
+		cusLambda2.testDefault(name, CustomFuntionalInterfaceTwo.returnRandomNum  ());
+	}
+	
 	@FunctionalInterface
 	interface CustomFuntionalInterface {
 		/*
@@ -52,6 +71,24 @@ public class CustomFunctionLamda {
 		 * Functional interface or any normal interface can have one or more default and static method with body 
 		 */
 		 int testFunction (int i , int j) ;
+	}
+	@FunctionalInterface
+	interface CustomFuntionalInterfaceTwo {
+		
+		void testVoid () ;
+		
+		default void testDefault (String name) {
+			System.out.println("Hi, this is "+ name);
+		}
+		
+		default void testDefault (String name , double myFavNum) {
+			System.out.println("Hi, this is "+ name + " and My fav number is "+ myFavNum);
+		}
+		
+		static double returnRandomNum () {
+			return Math.random();
+		}
+		
 	}
 	
 
